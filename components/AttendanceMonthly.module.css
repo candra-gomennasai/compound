@@ -1,0 +1,200 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.controlsCard {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--white);
+}
+
+@media (min-width: 768px) {
+  .controlsCard {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.monthPicker {
+  padding: 10px 16px;
+  border: 2px solid var(--black);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 900;
+  box-shadow: 2px 2px 0 0 var(--black);
+  background: var(--white);
+}
+
+.monthPicker:focus {
+  outline: none;
+  box-shadow: 4px 4px 0 0 var(--blue);
+  transform: translate(-2px, -2px);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.legendItem {
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.legendOt {
+  padding: 4px 8px;
+  background: var(--black);
+  color: var(--white);
+  border-radius: 4px;
+}
+
+.tableCard {
+  background: var(--white);
+  padding: 0;
+  position: relative;
+  overflow: visible !important;   /* allow sticky to work */
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 2px solid var(--black);
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: max-content;
+  width: 100%;
+}
+
+.table th, .table td {
+  border-bottom: 2px solid rgba(0,0,0,0.1);
+  border-right: 2px solid rgba(0,0,0,0.1);
+  padding: 8px;
+  text-align: center;
+  min-width: 40px;
+}
+
+.table th:last-child, .table td:last-child {
+  border-right: none;
+}
+
+.table th {
+  background: var(--gray-100);
+  font-weight: 900;
+  font-size: 0.9rem;
+  padding: 10px 8px;
+}
+
+.table th.daySubHeader {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 800;
+  padding: 4px 8px 8px;
+}
+
+.stickyCol {
+  background: var(--white);
+  border-right: 2px solid var(--black) !important;
+  text-align: left !important;
+  min-width: 160px;
+  padding: 10px 12px !important;
+  white-space: nowrap;
+}
+
+.table th.stickyCol {
+  background: var(--gray-100) !important;
+}
+
+.weekendHeader {
+  background: #fee2e2 !important;
+  color: #b91c1c;
+}
+
+.weekendCell {
+  background: #fff5f5;
+}
+
+.table tr:hover td {
+  background: #fdfdfd;
+}
+.table tr:hover td.weekendCell {
+  background: #fee2e2;
+}
+
+.memberName {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nameText {
+  font-weight: 900;
+  font-size: 0.95rem;
+}
+
+.colorIndicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--black);
+  flex-shrink: 0;
+}
+
+.cellContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 40px;
+}
+
+.statusIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.hadir   { background: #e0f8ef; color: #047857; }
+.cuti    { background: #fef3c7; color: #b45309; }
+.mangkir { background: #fee2e2; color: #b91c1c; }
+
+.otBadge {
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.emptyDash {
+  color: var(--gray-200);
+  font-weight: 800;
+}
+
+.statBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  min-width: 32px;
+}

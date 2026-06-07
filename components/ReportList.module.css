@@ -1,0 +1,308 @@
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* ── Report card ── */
+.reportCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.reportCard:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.accentBar { height: 4px; flex-shrink: 0; }
+
+.cardInner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+/* ── Meta rows ── */
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.metaSection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--black);
+  line-height: 1.3;
+}
+
+.desc {
+  font-size: 0.78rem;
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Meta rows ── */
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.metaSection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.metaLabel {
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border: 2px solid var(--black);
+  color: var(--black);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.picChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  border: 2px solid #FF3D9A;
+  color: #FF3D9A;
+  background: #fff0f8;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.memberChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  border: 2px solid var(--black);
+  background: var(--gray-100);
+  color: var(--black);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  margin-top: auto;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.lemburBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  font-size: 0.62rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--red);
+  color: var(--white);
+  border: 1px solid var(--black);
+}
+
+/* ── Action btns ── */
+.deleteBtn {
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  transition: all 0.12s;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.deleteBtn:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.lemburBtn {
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff3cd;
+  border: 1px solid var(--yellow-dark);
+  color: #92620a;
+  transition: all 0.12s;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.lemburBtn:hover {
+  background: var(--yellow);
+  border-color: var(--black);
+  color: var(--black);
+}
+
+/* ── Lembur period chips on card ── */
+.lemburPeriodList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.lemburPeriodChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  background: #fff3cd;
+  border: 1.5px solid var(--yellow-dark);
+  color: #92620a;
+  white-space: nowrap;
+}
+
+/* ── Empty state ── */
+.empty {
+  padding: 56px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.empty h3 { font-size: 1.1rem; font-weight: 900; color: var(--text-muted); }
+.empty p  { font-size: 0.875rem; color: var(--text-muted) !important; }
+
+/* ── Skeleton ── */
+.skeletonCard { height: 180px; border-radius: 0; }
+
+/* ── Filter bar ── */
+.filterBar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: var(--white);
+  border: 2px solid var(--black);
+  box-shadow: var(--shadow-sm);
+}
+
+.filterModes {
+  display: flex;
+  gap: 16px;
+}
+
+.filterModeLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.filterDateRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filterDateInput {
+  padding: 8px 12px;
+  border: 2px solid var(--black);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: var(--white);
+}
+
+.totalBadge {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.totalCount {
+  color: var(--black);
+  background: var(--yellow);
+  padding: 2px 8px;
+  border: 1px solid var(--black);
+  font-weight: 900;
+}

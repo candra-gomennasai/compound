@@ -1,0 +1,123 @@
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal {
+  background: var(--white);
+  border: 4px solid var(--black);
+  box-shadow: 8px 8px 0 0 var(--black);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px 24px;
+  border-bottom: 2px solid rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffedd5;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin: 4px 0 0 0;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.closeBtn:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 10px;
+}
+
+.dayCard {
+  border: 2px solid var(--gray-200);
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background: var(--white);
+  position: relative;
+}
+
+.dayCard.weekendDefault {
+  background: #fff5f5;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.dayCard.checked {
+  background: #fee2e2;
+  border-color: #b91c1c;
+  color: #b91c1c;
+  box-shadow: 2px 2px 0 0 #b91c1c;
+  transform: translate(-1px, -1px);
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.dayNum {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.dayName {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.footer {
+  padding: 20px 24px;
+  border-top: 2px solid rgba(0,0,0,0.1);
+  background: var(--gray-50);
+}

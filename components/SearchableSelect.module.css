@@ -1,0 +1,214 @@
+/* ── Wrapper ── */
+.wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* ── Trigger button ── */
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border: 2px solid var(--black);
+  background: var(--white);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--black);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: box-shadow 0.12s, transform 0.12s;
+  min-height: 48px;
+}
+
+.triggerOpen {
+  box-shadow: 3px 3px 0px 0px var(--green);
+  transform: translate(-1px, -1px);
+  border-color: var(--black);
+}
+
+.triggerContent {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.triggerIcons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.clearBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  background: var(--gray-200);
+  border: 1px solid var(--black);
+  color: var(--black);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.clearBtn:hover { background: #fecaca; }
+
+.chevronUp { transform: rotate(180deg); transition: transform 0.15s; }
+
+/* ── Selected display ── */
+.selectedDisplay {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  min-width: 0;
+  width: 100%;
+}
+.colorDot {
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--black);
+  flex-shrink: 0;
+}
+.selectedLabel {
+  font-weight: 900;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.selectedSub {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.placeholder {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ── Dropdown panel ── */
+.panel {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--white);
+  border: 2px solid var(--black);
+  box-shadow: var(--shadow-md);
+  max-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Search box ── */
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--black);
+  background: var(--gray-100);
+  flex-shrink: 0;
+}
+.searchIcon { color: var(--text-muted); flex-shrink: 0; }
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--black);
+  outline: none;
+  padding: 0;
+}
+.searchInput::placeholder { color: var(--text-muted); font-weight: 500; }
+.clearQuery {
+  width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gray-200); border: 1px solid var(--black);
+  cursor: pointer; flex-shrink: 0;
+}
+
+/* ── Options list ── */
+.list {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border: none;
+  border-bottom: 1px solid var(--gray-200);
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+.option:last-child { border-bottom: none; }
+.option:hover { background: var(--gray-100); }
+
+.optionSelected {
+  background: #fffaeb !important;
+  border-left: 3px solid var(--yellow);
+}
+
+.optionColor {
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--black);
+  flex-shrink: 0;
+}
+.optionTexts {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+}
+.optionLabel {
+  font-size: 0.875rem;
+  font-weight: 900;
+  color: var(--black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.optionSub {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.checkMark {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--yellow);
+  flex-shrink: 0;
+}
+
+.empty {
+  padding: 20px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+}

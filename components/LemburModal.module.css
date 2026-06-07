@@ -1,0 +1,259 @@
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal {
+  background: var(--white);
+  border: 2px solid var(--black);
+  box-shadow: 4px 4px 0 0 var(--black);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.2s ease-out both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: #fff3cd;
+  border-bottom: 2px solid var(--black);
+  gap: 10px;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.body {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sectionLabel {
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.existingList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  background: #f8fffe;
+  border: 2px solid var(--green);
+}
+
+.periodRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+
+.periodTime {
+  font-weight: 900;
+  flex: 1;
+}
+
+.removeBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.timeRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.timeGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.timeLabel {
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.timeInput {
+  padding: 10px 12px;
+  border: 2px solid var(--black);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: var(--white);
+  width: 100%;
+}
+
+.timeInput:focus {
+  outline: none;
+  box-shadow: 2px 2px 0 0 var(--green);
+}
+
+.dash {
+  font-weight: 900;
+  font-size: 1.1rem;
+  padding-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.footer {
+  display: flex;
+  gap: 10px;
+  padding: 14px 18px;
+  border-top: 2px solid var(--gray-200);
+  background: var(--gray-100);
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 10px;
+  background: var(--white);
+  border: 2px solid var(--black);
+  font-family: inherit;
+  font-weight: 900;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.cancelBtn:hover { background: var(--gray-200); }
+
+.saveBtn {
+  flex: 2;
+  padding: 10px 16px;
+  background: var(--yellow);
+  border: 2px solid var(--black);
+  box-shadow: 2px 2px 0 0 var(--black);
+  font-family: inherit;
+  font-weight: 900;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.saveBtn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 0 var(--black);
+}
+
+.saveBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Member chips ── */
+.memberGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.memberChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  font-family: inherit;
+  border: 2px solid var(--gray-200);
+  background: var(--white);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.memberChip:hover {
+  border-color: var(--black);
+}
+
+.memberActive {
+  border-width: 2px;
+}
+
+.memberDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.memberHint {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* ── Period member names ── */
+.periodMembers {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+

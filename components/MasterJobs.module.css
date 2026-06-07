@@ -1,0 +1,167 @@
+.wrap { display: flex; flex-direction: column; gap: 16px; }
+
+.addBtn { align-self: flex-start; }
+
+/* hints */
+.inputHint {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* preview chip */
+.preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 6px 12px;
+  border: 2px solid var(--black);
+  box-shadow: var(--shadow-sm);
+  background: var(--white);
+}
+.previewDot {
+  width: 14px; height: 14px;
+  border: 1.5px solid var(--black);
+  flex-shrink: 0;
+}
+.previewName { font-size: 0.875rem; font-weight: 900; color: var(--black); }
+
+.emptyHint { font-size: 0.75rem; color: var(--text-muted) !important; }
+
+.categoryDesc {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* ── Add form ── */
+.addForm {
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 500px) {
+  .formGrid { grid-template-columns: 1fr; }
+}
+
+.colorGroup { grid-column: 1 / -1; }
+.colorGroup label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+.colorPills { display: flex; gap: 10px; flex-wrap: wrap; }
+.colorDot {
+  width: 32px; height: 32px;
+  border: 2px solid var(--black);
+  cursor: pointer;
+  transition: transform 0.12s;
+}
+.colorDot:hover { transform: scale(1.15); }
+
+/* ── Job cards grid ── */
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 500px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+.jobCard {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.jobCard:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 16px 12px;
+}
+
+.colorBadge {
+  width: 40px; height: 40px;
+  flex-shrink: 0;
+  border: 2px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.cardInfo { flex: 1; min-width: 0; }
+.jobName {
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: var(--black);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.categoryTag {
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.jobDesc {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted) !important;
+  padding: 0 16px 14px;
+  line-height: 1.4;
+}
+
+.accentLine {
+  height: 4px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.deleteBtn {
+  width: 30px; height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 2px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.deleteBtn:hover { background: #fee2e2; border-color: #ef4444; color: #ef4444; }
+
+/* ── Empty ── */
+.empty {
+  padding: 48px 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+}
+.empty p { font-size: 0.875rem; color: var(--text-muted) !important; }
+
+/* ── Skeleton ── */
+.skeletonCard { height: 110px; }

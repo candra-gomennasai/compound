@@ -1,0 +1,205 @@
+.wrap { display: flex; flex-direction: column; gap: 20px; }
+
+/* ── Hero ── */
+.hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 24px;
+  border-top: 5px solid var(--black);
+  margin-bottom: 4px;
+}
+.heroLeft { display: flex; flex-direction: column; gap: 6px; }
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: var(--yellow);
+  color: var(--black);
+  border: 2px solid var(--black);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+  margin-bottom: 6px;
+}
+.heroTitle { margin: 0; }
+.heroSub {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted) !important;
+}
+.heroBtn { white-space: nowrap; align-self: flex-start; }
+
+/* ── Stats ── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 600px) {
+  .statsGrid { grid-template-columns: repeat(4, 1fr); }
+}
+.statCard {
+  padding: 18px 16px;
+  border: 2px solid var(--black);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.statCard:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+.statLabel {
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  opacity: 0.75;
+}
+.statValue {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.statSub {
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+/* ── Progress ── */
+.progressCard { padding: 20px 24px; }
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.sectionLabel {
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--black);
+  margin-bottom: 2px;
+}
+.progressSub { font-size: 0.8rem; font-weight: 600; color: var(--text-muted) !important; }
+.progressPct { font-size: 1.75rem; font-weight: 900; letter-spacing: -0.04em; color: var(--black); }
+.progressTrack {
+  height: 14px;
+  background: var(--gray-100);
+  border: 2px solid var(--black);
+  overflow: hidden;
+}
+.progressFill {
+  height: 100%;
+  transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.5s;
+}
+
+/* ── Chart ── */
+.chartCard { padding: 20px 24px; }
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.chartSub { font-size: 0.78rem; font-weight: 600; color: var(--text-muted) !important; }
+
+/* ── Tooltip ── */
+.tooltip {
+  background: var(--white);
+  border: 2px solid var(--black);
+  padding: 10px 14px;
+  box-shadow: var(--shadow-sm);
+}
+.tooltipLabel { font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2px; }
+.tooltipValue { font-size: 0.9rem; font-weight: 900; color: var(--orange); }
+
+/* ── Filters ── */
+.filterRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+.filterRow::-webkit-scrollbar { display: none; }
+.filterBtn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  border: 2px solid var(--black);
+  background: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.filterBtn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 0 #000;
+}
+.filterBtn.active {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ── Recent ── */
+.recentSection { display: flex; flex-direction: column; gap: 12px; }
+.recentHeader { display: flex; align-items: center; justify-content: space-between; }
+.seeAll {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--orange);
+  transition: gap 0.12s;
+}
+.seeAll:hover { gap: 8px; }
+
+.recentList { display: flex; flex-direction: column; gap: 10px; }
+.recentItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  overflow: hidden;
+}
+.recentAccent { width: 6px; flex-shrink: 0; align-self: stretch; }
+.recentLeft { display: flex; flex-direction: column; gap: 6px; flex: 1; padding: 14px 14px; }
+.recentTitle { font-size: 0.9rem; font-weight: 900; color: var(--black); }
+.recentDesc  { font-size: 0.8rem; color: var(--text-muted) !important; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.recentTime  {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 14px 14px 14px 0;
+}
+
+/* ── Skeleton ── */
+.skeletonHero { height: 100px; }
+.skeletonStat { height: 90px; }
+.skeletonChart { height: 260px; }
+
+@media (max-width: 480px) {
+  .statsGrid { gap: 8px; }
+  .statCard { padding: 12px 10px; }
+  .statValue { font-size: 1.6rem; }
+}

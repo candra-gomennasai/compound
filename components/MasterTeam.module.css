@@ -1,0 +1,138 @@
+.wrap { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── Summary bar ── */
+.summaryBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 14px 20px;
+}
+.summaryLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.summaryCount {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--black);
+}
+
+/* ── Avatar row ── */
+.avatarRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 4px 0;
+}
+
+/* ── Add form ── */
+.addForm {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 500px) { .formGrid { grid-template-columns: 1fr; } }
+
+.colorGroup { grid-column: 1 / -1; }
+.colorGroup label {
+  display: block;
+  font-size: 0.75rem; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--black); margin-bottom: 8px;
+}
+.colorPills { display: flex; gap: 10px; flex-wrap: wrap; }
+.colorDot {
+  width: 32px; height: 32px;
+  border: 2px solid var(--black); cursor: pointer;
+  transition: transform 0.12s;
+}
+.colorDot:hover { transform: scale(1.15); }
+
+/* ── Preview ── */
+.previewRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--gray-100);
+  border: 2px solid var(--black);
+}
+.previewName { font-size: 0.9rem; font-weight: 900; color: var(--black); }
+.previewRole { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); }
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 480px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* ── Member card ── */
+.memberCard {
+  overflow: hidden;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.memberCard:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.memberTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 16px 14px;
+}
+.memberInfo { flex: 1; min-width: 0; }
+.memberName {
+  font-size: 0.9rem; font-weight: 900;
+  color: var(--black); line-height: 1.2;
+  margin-bottom: 6px;
+}
+.roleBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.memberEmail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--text-muted);
+  border-top: 2px solid var(--gray-200);
+}
+
+.deleteBtn {
+  width: 30px; height: 30px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 2px solid transparent;
+  color: var(--text-muted); cursor: pointer; transition: all 0.12s;
+}
+.deleteBtn:hover { background: #fee2e2; border-color: #ef4444; color: #ef4444; }
+
+/* ── Empty ── */
+.empty {
+  padding: 48px 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+}
+.empty p { font-size: 0.875rem; color: var(--text-muted) !important; }
+
+/* ── Skeleton ── */
+.skeletonCard { height: 110px; }
