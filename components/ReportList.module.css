@@ -104,9 +104,7 @@
   border: 2px solid var(--black);
   color: var(--black);
   max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: break-word;
 }
 
 .picChip {
@@ -121,9 +119,7 @@
   color: #FF3D9A;
   background: #fff0f8;
   max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: break-word;
 }
 
 .memberChip {
@@ -137,9 +133,7 @@
   background: var(--gray-100);
   color: var(--black);
   max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  word-break: break-word;
 }
 
 .cardFooter {

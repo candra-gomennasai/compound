@@ -1,5 +1,6 @@
 "use client";
 import { useReports } from '@/hooks/useReports';
+import { useTeam } from '@/hooks/useTeam';
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
 import { Trash2, CheckCircle2, Clock3, ListTodo, AlertCircle, PlusCircle, Timer } from 'lucide-react';
@@ -22,6 +23,7 @@ const STATUS_MAP = {
 };
 export default function ReportList() {
   const { reports, deleteReport, updateReport, isLoaded } = useReports();
+  const { team } = useTeam();
   const [editId, setEditId] = useState(null);
   const [lemburReportId, setLemburReportId] = useState(null);
   
@@ -196,20 +198,23 @@ export default function ReportList() {
                     </span>
                   </div>
                 )}
-                {(report.picName || report.memberName) && (
-                  <div className={styles.metaRow}>
-                    {report.picName && (
-                      <span className={styles.picChip}>⭐ {report.picName}</span>
-                    )}
-                    {report.memberName && (
-                      Array.isArray(report.memberName)
-                        ? report.memberName.map((n, idx) => (
-                            <span key={idx} className={styles.memberChip}>{n}</span>
-                          ))
-                        : <span className={styles.memberChip}>{report.memberName}</span>
-                    )}
-                  </div>
-                )}
+                {(report.picId || (report.memberIds && report.memberIds.length > 0)) && (() => {
+                  const picName = report.picId ? team.find(t => String(t.id) === String(report.picId))?.name : null;
+                  const memberNames = Array.isArray(report.memberIds) 
+                    ? report.memberIds.map(id => team.find(t => String(t.id) === String(id))?.name).filter(Boolean)
+                    : [];
+
+                  return (
+                    <div className={styles.metaRow}>
+                      {picName && (
+                        <span className={styles.picChip}>⭐ {picName}</span>
+                      )}
+                      {memberNames.length > 0 && memberNames.map((n, idx) => (
+                        <span key={idx} className={styles.memberChip}>{n}</span>
+                      ))}
+                    </div>
+                  );
+                })()}
               </div>
 
               {/* lemburPeriods display */}
