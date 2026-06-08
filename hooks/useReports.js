@@ -11,7 +11,8 @@ export function useReports() {
       const { data, error } = await supabase
         .from('daily_reports')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('date', { ascending: false })
+        .order('start_time', { ascending: false });
 
       if (error) throw error;
 
