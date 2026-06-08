@@ -3,8 +3,9 @@ import { useReports } from '@/hooks/useReports';
 import { useTeam } from '@/hooks/useTeam';
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
-import { Trash2, CheckCircle2, Clock3, ListTodo, AlertCircle, PlusCircle, Timer } from 'lucide-react';
+import { Trash2, CheckCircle2, Clock3, ListTodo, AlertCircle, PlusCircle, Timer, Download, Share2 } from 'lucide-react';
 import Link from 'next/link';
+import * as XLSX from 'xlsx';
 import ReportForm from '@/components/ReportForm';
 import LemburModal from '@/components/LemburModal';
 import { useState } from 'react';
@@ -61,6 +62,104 @@ export default function ReportList() {
       return true; // Fallback
     }
   });
+
+  const exportToExcel = () => {
+    // Sort chronological: oldest date first, earliest time first
+    const sortedForExport = [...filteredReports].sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      if (dateA !== dateB) return dateA - dateB;
+      
+      const startCompare = (a.startTime || '').localeCompare(b.startTime || '');
+      if (startCompare !== 0) return startCompare;
+      
+      return (a.endTime || '').localeCompare(b.endTime || '');
+    });
+
+    const dataToExport = sortedForExport.map((r, i) => {
+      const picName = r.picId ? team.find(t => String(t.id) === String(r.picId))?.name : '';
+      const memberNames = Array.isArray(r.memberIds) 
+        ? r.memberIds.map(id => team.find(t => String(t.id) === String(id))?.name).filter(Boolean).join(', ')
+        : '';
+        
+      return {
+        'No': i + 1,
+        'Tanggal': r.date ? format(new Date(r.date), 'dd MMM yyyy', { locale: idLocale }) : '',
+        'Jam Mulai': r.startTime,
+        'Jam Selesai': r.endTime,
+        'Pekerjaan': r.title,
+        'Keterangan': r.description,
+        'Kategori': r.categoryName,
+        'Status': STATUS_MAP[r.status]?.label || r.status,
+        'Jenis Kerja': r.workType || 'Reguler',
+        'Penanggung Jawab (PIC)': picName,
+        'Anggota': memberNames,
+      };
+    });
+
+    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Laporan Harian");
+    
+    // Auto-adjust column widths roughly
+    const columnWidths = [
+      { wch: 5 }, { wch: 15 }, { wch: 10 }, { wch: 10 }, 
+      { wch: 30 }, { wch: 40 }, { wch: 25 }, { wch: 15 }, 
+      { wch: 15 }, { wch: 25 }, { wch: 30 }
+    ];
+    worksheet['!cols'] = columnWidths;
+
+    const fileName = filterMode === 'single' 
+      ? `Laporan Harian - ${startDate}.xlsx` 
+      : `Laporan Harian - ${startDate} sd ${endDate}.xlsx`;
+      
+    XLSX.writeFile(workbook, fileName);
+  };
+
+  const copyToWA = () => {
+    // Sort chronological for WA too
+    const sortedForWA = [...filteredReports].sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      if (dateA !== dateB) return dateA - dateB;
+      
+      const startCompare = (a.startTime || '').localeCompare(b.startTime || '');
+      if (startCompare !== 0) return startCompare;
+      
+      return (a.endTime || '').localeCompare(b.endTime || '');
+    });
+
+    let text = `*Laporan Harian Team Compound*\n`;
+    
+    if (filterMode === 'single') {
+      text += `📅 *Tanggal:* ${startDate}\n`;
+    } else {
+      text += `📅 *Rentang:* ${startDate} s/d ${endDate}\n`;
+    }
+    
+    text += `✅ *Total Pekerjaan:* ${sortedForWA.length}\n\n`;
+
+    sortedForWA.forEach((r, i) => {
+      const statusIcon = r.status === 'Done' || r.status === 'Failed' ? '✅' : '⏳';
+      const picName = r.picId ? team.find(t => String(t.id) === String(r.picId))?.name : '';
+      const memberNames = Array.isArray(r.memberIds) 
+        ? r.memberIds.map(id => team.find(t => String(t.id) === String(id))?.name).filter(Boolean).join(', ')
+        : '';
+      
+      let names = memberNames;
+
+      text += `${i + 1}. *${r.startTime} - ${r.endTime}*\n`;
+      text += `${statusIcon} ${r.title}\n`;
+      if (names) {
+        text += `👷 ${names}\n`;
+      }
+      text += `\n`;
+    });
+
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Teks laporan (versi singkat) berhasil disalin! Silakan Paste (Tempel) di WhatsApp.");
+    });
+  };
 
   const totalPages = Math.ceil(filteredReports.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -147,8 +246,18 @@ export default function ReportList() {
             </>
           )}
         </div>
-        <div style={{ marginTop: '4px', fontSize: '0.85rem', fontWeight: 800, color: 'var(--text-muted)' }}>
-          Total Pekerjaan: <span style={{ color: 'var(--black)', background: 'var(--yellow)', padding: '2px 8px', border: '1px solid var(--black)' }}>{filteredReports.length}</span>
+        <div style={{ marginTop: '4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
+          <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--text-muted)' }}>
+            Total Pekerjaan: <span style={{ color: 'var(--black)', background: 'var(--yellow)', padding: '2px 8px', border: '1px solid var(--black)' }}>{filteredReports.length}</span>
+          </div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button onClick={copyToWA} className="btn" style={{ background: '#25D366', color: 'white', padding: '6px 12px', fontSize: '0.75rem', border: '2px solid black' }}>
+              <Share2 size={14} /> Salin WA
+            </button>
+            <button onClick={exportToExcel} className="btn" style={{ background: '#107c41', color: 'white', padding: '6px 12px', fontSize: '0.75rem' }}>
+              <Download size={14} /> Export Excel
+            </button>
+          </div>
         </div>
       </div>
       <div className={styles.grid}>
