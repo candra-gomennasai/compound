@@ -27,6 +27,7 @@ export default function ReportList() {
   const { team } = useTeam();
   const [editId, setEditId] = useState(null);
   const [lemburReportId, setLemburReportId] = useState(null);
+  const [toastMessage, setToastMessage] = useState('');
   
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
@@ -157,7 +158,8 @@ export default function ReportList() {
     });
 
     navigator.clipboard.writeText(text).then(() => {
-      alert("Teks laporan (versi singkat) berhasil disalin! Silakan Paste (Tempel) di WhatsApp.");
+      setToastMessage("Teks laporan berhasil disalin! Silakan Paste (Tempel) di WhatsApp.");
+      setTimeout(() => setToastMessage(''), 3000);
     });
   };
 
@@ -290,7 +292,7 @@ export default function ReportList() {
                   <button onClick={() => setEditId(report.id)} className={styles.deleteBtn} title="Edit" style={{ color: '#000' }}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                   </button>
-                  <button onClick={() => deleteReport(report.id)} className={styles.deleteBtn} title="Hapus">
+                  <button onClick={() => { if(window.confirm('Apakah Anda yakin ingin menghapus laporan ini? Data yang dihapus tidak dapat dikembalikan.')) deleteReport(report.id); }} className={styles.deleteBtn} title="Hapus">
                     <Trash2 size={14} />
                   </button>
                 </div>
@@ -421,6 +423,35 @@ export default function ReportList() {
           </SafePortal>
         ) : null;
       })()}
+
+      {toastMessage && (
+        <SafePortal>
+          <div style={{
+            position: 'fixed',
+            bottom: '24px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            background: 'var(--black)',
+            color: 'var(--white)',
+            padding: '12px 24px',
+            borderRadius: '4px',
+            fontWeight: 700,
+            fontSize: '0.85rem',
+            zIndex: 99999,
+            boxShadow: '4px 4px 0 0 rgba(0,0,0,0.5)',
+            border: '2px solid var(--white)',
+            animation: 'slideUp 0.3s ease forwards'
+          }}>
+            ✅ {toastMessage}
+          </div>
+          <style>{`
+            @keyframes slideUp {
+              from { transform: translate(-50%, 20px); opacity: 0; }
+              to { transform: translate(-50%, 0); opacity: 1; }
+            }
+          `}</style>
+        </SafePortal>
+      )}
     </>
   );
 }
