@@ -81,8 +81,7 @@ export default function AttendanceMonthly() {
     });
     return totalHours;
   };
-
-  const members = team.filter(m => !m.isPic);
+  const members = team.filter(m => !m.isPic).sort((a, b) => a.name.localeCompare(b.name));
 
   // Kalkulasi rekap total per anggota
   const monthlyAttendanceDays = Object.keys(attendance).filter(date => date.startsWith(selectedMonth));

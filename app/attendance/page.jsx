@@ -1,7 +1,7 @@
 import AttendanceWrapper from '@/components/AttendanceWrapper';
 
 export const metadata = {
-  title: 'Absensi & Lembur — Team Compound',
+  title: 'Absensi — Team Compound',
 };
 
 export default function AttendancePage() {
@@ -18,9 +18,9 @@ export default function AttendancePage() {
         }}>
           ⏱️ Kehadiran Tim
         </span>
-        <h1>Absensi & Rekap Lembur</h1>
+        <h1>Rekapitulasi Absensi</h1>
         <p style={{ color: 'var(--text-muted)', marginTop: '6px', fontWeight: 600 }}>
-          Kelola status kehadiran harian anggota tim. Total jam lembur akan dihitung otomatis dari Laporan Tugas.
+          Kelola status kehadiran harian anggota tim (Hadir, Cuti, Mangkir).
         </p>
       </div>
       <AttendanceWrapper />

@@ -4,7 +4,8 @@ import { useTeam } from '@/hooks/useTeam';
 import { useReports } from '@/hooks/useReports';
 import { useSettings } from '@/hooks/useSettings';
 import { useHolidays } from '@/hooks/useHolidays';
-import { Calendar, DollarSign, Umbrella } from 'lucide-react';
+import { Calendar, DollarSign, Umbrella, Download } from 'lucide-react';
+import * as XLSX from 'xlsx';
 import HolidayModal from './HolidayModal';
 import styles from './Overtime.module.css';
 
@@ -176,6 +177,35 @@ export default function Overtime() {
     return { ...member, weekdayHours, weekendHours, totalHours: weekdayHours + weekendHours, totalIndex, totalPay };
   });
 
+  const exportToExcel = () => {
+    const dataToExport = memberStats.map((m, i) => {
+      const row = {
+        'No': i + 1,
+        'Nama Anggota': m.name,
+      };
+
+      daysList.forEach(d => {
+        const otHours = getOvertimeForDate(m, d.fullDateStr);
+        row[`Tgl ${d.dateNum}`] = otHours > 0 ? otHours : 0;
+      });
+
+      row['Jam Hari Kerja'] = m.weekdayHours;
+      row['Jam Hari Libur'] = m.weekendHours;
+      row['Total Jam'] = m.totalHours;
+      row['Total Indeks'] = m.totalIndex;
+      row['Estimasi Gaji (Rp)'] = m.totalPay;
+
+      return row;
+    });
+
+    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Rekap Lembur");
+    
+    const fileName = `Rekap_Lembur_${selectedMonth}.xlsx`;
+    XLSX.writeFile(workbook, fileName);
+  };
+
   return (
     <div className={styles.wrap}>
 
@@ -252,9 +282,14 @@ export default function Overtime() {
       />
 
       {/* ── Matrix Table ── */}
-      <div className={styles.sectionHeader}>
-        <span className={styles.sectionTitle}>Matriks Lembur</span>
-        <span className={styles.sectionPill}>{selectedMonth}</span>
+      <div className={styles.sectionHeader} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div>
+          <span className={styles.sectionTitle}>Matriks Lembur</span>
+          <span className={styles.sectionPill}>{selectedMonth}</span>
+        </div>
+        <button onClick={exportToExcel} className="btn" style={{ background: '#107c41', color: 'white', padding: '6px 12px', fontSize: '0.75rem' }}>
+          <Download size={14} /> Export Excel
+        </button>
       </div>
 
       <div className={`${styles.tableCard} card fade-up delay-1`}>
